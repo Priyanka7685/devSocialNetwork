@@ -14,9 +14,18 @@ app.use(
 app.use(express.json())
 app.use(cookieParser())
 
+
+// extra part
 app.get("/api/test", (req, res) => {
     res.json({message: "API working"})
 })
 
+// extra part
 
-export {app}
+
+import authRoutes from './routes/authRoutes.js'
+
+app.use("/api/auth", authRoutes)
+
+
+export { app }

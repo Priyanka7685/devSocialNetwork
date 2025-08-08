@@ -95,6 +95,13 @@ const loginUser = async(req, res) => {
     // generate access token
     const token = user.generateAccessToken()
 
+    res.cookie('token', token, {
+        httpOnly: true,
+        secure: false,           // Set to true if using HTTPS
+        sameSite: 'Lax',         // 'None' if using HTTPS
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+})
+
     return res.status(200).json({
     message: "User logged in successfully",
     token,
@@ -107,7 +114,24 @@ const loginUser = async(req, res) => {
     })
 }
 
+
+// get user's profile
+const userProfile = async(req, res) => {
+    try {
+        return res.status(200).json({
+            message: "Current user details",
+            success: true,
+            user: req.user
+        })
+    } catch (error) {
+        return res.status(400).json({
+            message: "Unable to fetch current user details"
+        })
+    }
+}
+
 export {
     registerUser,
-    loginUser
+    loginUser,
+    userProfile
 }

@@ -16,6 +16,8 @@ export const verifyjwt = async (req, res, next) => {
         const user = await User.findById(decodedToken?._id).select("-password")
 
         if(!user) {
+            console.log("User not found");
+            
             return res.status(401).json({ message: "Unauthorized" })
         }
 

@@ -23,6 +23,7 @@ const handleLogin = async (e) => {
         )
 
         toast.success("Login successful")
+        localStorage.setItem("token", res.data.token);
         login(res.data.user)
 
         navigate("/")

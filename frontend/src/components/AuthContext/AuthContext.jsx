@@ -15,7 +15,9 @@ export const AuthProvider = ({ children }) => {
   // Login method
   const login = (userData) => {
     localStorage.setItem("user", JSON.stringify(userData));
+
     setUser(userData);
+    // console.log(userData)
   };
 
   // Logout method

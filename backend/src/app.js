@@ -22,10 +22,13 @@ app.get("/api/test", (req, res) => {
 
 // extra part
 
+app.use(express.urlencoded({ extended: true }));
 
 import authRoutes from './routes/authRoutes.js'
+import profileRoutes from './routes/profileRoutes.js'
 
 app.use("/api/auth", authRoutes)
+app.use("/api/profile", profileRoutes)
 
 
 export { app }

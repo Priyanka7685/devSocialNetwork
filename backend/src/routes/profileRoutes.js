@@ -7,6 +7,7 @@ import {
     editProfile
 } from "../controllers/profileController.js";
 import parser from "../middlewares/multer.middlewares.js";
+import upload from "../middlewares/multer.middlewares.js";
 
 
 const router = Router()
@@ -14,6 +15,6 @@ const router = Router()
 router.route("/").post(verifyjwt,parser.single('profilePicture'), createProfile,)
 router.route("/me").get(verifyjwt, getUserProfile)
 router.route("/:userId").get(getUserProfileById)
-router.route("/editProfile/:userId").put(editProfile)
+router.route("/editProfile/:userId", upload.single("profilePicture")).put(editProfile)
 
 export default router

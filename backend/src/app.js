@@ -26,9 +26,11 @@ app.use(express.urlencoded({ extended: true }));
 
 import authRoutes from './routes/authRoutes.js'
 import profileRoutes from './routes/profileRoutes.js'
+import postRoutes from './routes/postRoutes.js'
 
 app.use("/api/auth", authRoutes)
 app.use("/api/profile", profileRoutes)
+app.use("/api/post", postRoutes)
 
 
 export { app }

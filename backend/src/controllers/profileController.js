@@ -1,5 +1,5 @@
 import { Profile } from "../models/profileModel.js";
-import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import { uploadOnCloudinary, deleteFromCloudinary } from "../utils/cloudinary.js";
 
 
 const createProfile = async(req, res) => {

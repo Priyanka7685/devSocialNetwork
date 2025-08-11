@@ -21,8 +21,7 @@ export const CreateProfile = () => {
 
 
     const handleChange = (e) => {
-        // for updating profile
-         const { name, value } = e.target;
+         const { name, value, files } = e.target;
 
          // Handle file input separately
     if (name === "profilePicture") {
@@ -82,7 +81,6 @@ export const CreateProfile = () => {
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
-                        "Content-Type": "application/json",
                     }
                 }
             )
@@ -114,6 +112,7 @@ export const CreateProfile = () => {
               onChange={handleChange}
               placeholder="Write something about yourself..."
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              required
             ></textarea>
           </div>
 
@@ -128,6 +127,7 @@ export const CreateProfile = () => {
               onChange={handleChange}
               placeholder="e.g. New York, USA"
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              required
             />
           </div>
 

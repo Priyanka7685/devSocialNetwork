@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext/AuthContext";
+import { FaUser } from "react-icons/fa6";
+import { FaSignOutAlt, FaHome } from "react-icons/fa";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -46,52 +48,63 @@ export default function Navbar() {
           <>
             <div className="relative" ref={dropdownRef}>
               <button
-                onClick={() => setShowProfileMenu(!showProfileMenu)}
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                onClick={() => navigate("/")}
+                className="bg-blue-500 text-white px-4 py-2 mr-4 rounded-full hover:bg-blue-600"
               >
-                Profile
+                <FaHome/>
+              </button>
+              <button
+                onClick={() => setShowProfileMenu(!showProfileMenu)}
+                className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
+              >
+                <FaUser/>
               </button>
               {showProfileMenu && (
                 <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 z-50">
                   <Link
                     to="/profile"
-                    className="block px-4 py-2 hover:bg-gray-100"
+                    className="block px-4 py-2 hover:bg-blue-300"
                     onClick={() => setShowProfileMenu(false)}
                   >
                     Create Profile
                   </Link>
                   <Link
                     to={`/profile/${user.id}`}
-                    className="block px-4 py-2 hover:bg-gray-100"
+                    className="block px-4 py-2 hover:bg-blue-300"
                     onClick={() => setShowProfileMenu(false)}
                   >
                     My Profile
                   </Link>
                   <Link
                     to={`editProfile/${user.id}`}
-                    className="block px-4 py-2 hover:bg-gray-100"
+                    className="block px-4 py-2 hover:bg-blue-300"
                     onClick={() => setShowProfileMenu(false)}
                   >
                     Edit Profile
+                  </Link>
+                  <Link
+                    to={`myPosts/${user.id}`}
+                    className="block px-4 py-2 hover:bg-blue-300"
+                    onClick={() => setShowProfileMenu(false)}
+                  >
+                    My Posts
                   </Link>
                 </div>
               )}
             </div>
 
             <button
-              onClick={() => {
-                /* handle create post */
-              }}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+              onClick={() => navigate("/createPosts")}
+              className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
             >
               Create Post
             </button>
 
             <button
               onClick={handleLogout}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+              className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
             >
-              Logout
+              <FaSignOutAlt/>
             </button>
           </>
         ) : (

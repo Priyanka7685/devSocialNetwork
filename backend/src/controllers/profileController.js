@@ -80,7 +80,7 @@ const createProfile = async(req, res) => {
     // get user profile by id
     const getUserProfileById = async(req, res) => {
         try {
-            const profile = await Profile.findOne({ user: req.params.userId}).populate("user", ["name", "email"])
+            const profile = await Profile.findOne({ user: req.params.userId}).populate("user", ["username", "email"])
 
             if(!profile) {
                 return res.status(404).json({ message: "Profile not found" })

@@ -44,13 +44,33 @@ const createPost = async(req, res) => {
 }
 
 
-// get all posts
+// get all posts and pagination
 const getAllPosts = async (req, res) => {
     try {
+        const page = parseInt(req.query.page)
+        const limit = parseInt(req.query.limit)
+        const skip = (page - 1)*limit
+
+        // total posts
+        const totalPosts = await Post.countDocuments()
+
         const posts = await Post.find()
             .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(limit)
+            .populate('user', ['_id','username', 'email'])
+
+        const totalPages = Math.ceil(totalPosts / limit)
         
-            res.status(200).json(posts)
+            res.status(200).json({
+                posts,
+                pagination: {
+                    totalPosts,
+                    totalPages,
+                    currentPage: page,
+                    pageSize: limit
+                }
+            })
         
     } catch (error) {
         console.error("Get all posts error:", error);
@@ -125,7 +145,8 @@ const deletePosts = async(req, res) => {
 // get posts by id
 const getPostsById = async(req, res) => {
     try {
-        const posts =  await Post.find({ user: req.params.userId }).populate("user", ["name", "email"]);
+
+        const posts =  await Post.find({ user: req.params.userId }).populate("user", ["_id","username", "email", "profilePicture"]);
 
         if(!posts) {
             return res.status(404).json({ message: "Posts not found" })

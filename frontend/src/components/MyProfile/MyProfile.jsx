@@ -37,7 +37,8 @@ export default function MyProfile() {
   if (!profile) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-gray-50 font-sans">
-        <p className="text-gray-600 text-lg tracking-wide">No profile found.</p>
+        <h1 className="text-gray-600 text-lg tracking-wide">{user.username}</h1>
+        <h1 className="text-gray-600 text-lg tracking-wide">{user.email}</h1>
       </div>
     );
   }
@@ -59,7 +60,12 @@ export default function MyProfile() {
 
           {profile && (
             <h1 className="mt-5 text-2xl font-semibold text-gray-900 tracking-wide font-poppins">
-              {user.username}
+              {user.username }
+            </h1>
+          )}
+          {profile && (
+            <h1 className="mt-5 text-2xl font-semibold text-gray-900 tracking-wide font-poppins">
+              {user.email}
             </h1>
           )}
           {profile.bio && (

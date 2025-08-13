@@ -1,4 +1,5 @@
 import { FaFacebookF, FaTwitter, FaInstagram, FaThreads, FaGithub } from 'react-icons/fa6';
+import Posts from '../Posts/Posts';
 export default function Home() {
   return (
     <div className="flex min-h-screen">
@@ -39,6 +40,7 @@ export default function Home() {
           <p className="text-lg text-gray-700 mb-6">
             A social platform built for developers to connect, share, and grow together.
           </p>
+        <Posts/>
         </div>
       </main>
     </div>

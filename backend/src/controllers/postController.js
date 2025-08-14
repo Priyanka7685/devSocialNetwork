@@ -59,6 +59,7 @@ const getAllPosts = async (req, res) => {
             .skip(skip)
             .limit(limit)
             .populate('user', ['_id','username', 'email'])
+             .populate("comments.user", ["_id", "username", "email"]) // Comment owner
 
         const totalPages = Math.ceil(totalPosts / limit)
         
@@ -160,7 +161,7 @@ const getPostsById = async(req, res) => {
 }
 
 
-// likes
+// likes 
 const toggleLike = async(req, res) => {
     try {
         const { postId } = req.params
@@ -216,7 +217,8 @@ const addComments = async(req, res) => {
         await post.save()
 
 
-    await post.populate("comments.user", ["name", "email"])
+    await post.populate("comments.user", ["_id","username", "email"])
+
 
     return res.status(200).json({
             message: "Comment added successfully",
@@ -283,6 +285,9 @@ const deleteComments = async(req, res) => {
     );
 
     await post.save();
+
+    // Populate user for remaining comments
+    await post.populate("comments.user", ["_id", "username", "email"]);
 
     return res.status(200).json({
       message: "Comment deleted successfully",

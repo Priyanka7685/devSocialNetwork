@@ -5,7 +5,7 @@ import {
     createPost,
     deleteComments,
     deletePosts,
-    editPosts,
+    editPosts, 
     getAllPosts,
     getComments,
     getPostsById, 

@@ -37,8 +37,8 @@ export default function MyProfile() {
   if (!profile) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-gray-50 font-sans">
-        <h1 className="text-gray-600 text-lg tracking-wide">{user.username}</h1>
         <h1 className="text-gray-600 text-lg tracking-wide">{user.email}</h1>
+        {/* <h1 className="text-gray-600 text-lg tracking-wide break-all">{user.username}</h1> */}
       </div>
     );
   }

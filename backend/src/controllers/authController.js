@@ -128,7 +128,111 @@ const loginUser = async(req, res) => {
 //     }
 // }
 
+
+
+// followers
+ const followUser = async (req, res) => {
+    try {
+        const userId = req.params.id      // user to follow
+        const currentUserId = req.user.id // current user
+
+
+        if(userId === currentUserId) {
+            return res.status(400).json({ message: "You cannot follow yourself"})
+        }
+
+        const user = await User.findById(userId)
+        const currentUser = await User.findById(currentUserId)
+
+        if (!user) {
+            return res.status(404).json({ message: "User to follow not found" });
+        }
+        if (!currentUser) {
+            return res.status(404).json({ message: "Current user not found" });
+        }
+
+
+        if(!user.followers.some(f => f.toString() === currentUserId)) {
+            user.followers.push(currentUserId)
+            currentUser.following.push(userId)
+
+
+            await user.save()
+            await currentUser.save()
+
+            res.status(200).json({
+                message: "User followed successfully"
+            })
+        }
+
+    } catch (error) {
+        res.status(400).json({
+            message: "Unable to follow user"
+        })
+        console.log(error)
+    }
+}
+
+// unfollow 
+
+const unfollowUser = async (req, res) => {
+    try {
+        const userId = req.params.id
+        const currentUserId = req.user.id
+
+        const user = await User.findById(userId)
+        const currentUser = await User.findById(currentUserId)
+
+        if(user.followers.some(id => id.toString() ===currentUserId)) {
+            user.followers = user.followers.filter(id => id.toString() !== currentUserId)
+            currentUser.following = currentUser.following.filter(id => id.toString() !== userId)
+
+
+            await user.save()
+            await currentUser.save()
+
+            res.status(200).json({
+                message: "User unfollowed successfully"
+            })
+        }
+    } catch (error) {
+        res.status(400).json({
+            message: "Unable to unfollow user"
+        })
+    }
+}
+
+
+// get followers 
+const getFollowers = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id).populate('followers',  'username')
+
+        res.status(200).json(user.followers)
+    } catch (error) {
+       res.status(500).json({ message: error.message });
+    }
+}
+
+
+// get following
+
+const getFollowing = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id).populate('following',  'username')
+
+        res.status(200).json(user.following)
+        
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
 export {
     registerUser,
     loginUser,
+    followUser,
+    unfollowUser,
+    getFollowers,
+    getFollowing
 }

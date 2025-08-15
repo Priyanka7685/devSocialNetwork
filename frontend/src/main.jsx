@@ -14,6 +14,7 @@ import { EditProfile } from './components/EditProfile/EditProfile.jsx'
 import CreatePosts from './components/CreatePosts/CreatePosts.jsx'
 import MyPosts from './components/MyPosts/MyPosts.jsx'
 import UserProfile from './components/UserProfile/UserProfile.jsx'
+import Discover from './components/Discover/Discover.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -48,6 +49,8 @@ const router = createBrowserRouter(
       <Route path='/user/:userId' element={<UserProfile/>}/>
       
       <Route path='/createPosts' element={<CreatePosts/>}/>
+      
+      <Route path='/discover' element={<Discover/>}/>
       
 
       </Route>

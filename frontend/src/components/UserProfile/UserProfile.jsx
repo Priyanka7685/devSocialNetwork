@@ -1,30 +1,115 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-// import { useAuth } from "../AuthContext/AuthContext";
+import { useAuth } from "../AuthContext/AuthContext";
 
 export default function UserProfile() {
   const { userId } = useParams();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
-//   const { user } = useAuth()
+  const { user } = useAuth()
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [followersCount, setFollowersCount] = useState(0);
+  const [followingCount, setFollowingCount] = useState(0);
+
+  const token = localStorage.getItem("token");
+
+   const fetchProfile = async () => {
+    try {
+      const res = await axios.get(`http://localhost:8000/api/profile/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = res.data.profile || res.data;
+
+      // Ensure followers/following arrays exist
+      const followers = data.followers || [];
+      const following = data.following || [];
+
+      setProfile({ ...data, followers, following });
+      // setFollowersCount(followers.length);
+      //  setIsFollowing(user ? followers.some(f => f._id === user.id || f.toString() === user.id) : false);
+
+       // Check follow state
+      const followersRes = await axios.get(`http://localhost:8000/api/auth/${userId}/followers`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setFollowersCount(followersRes.data.length);
+
+      
+      setIsFollowing(
+  user ? followersRes.data.some(f => f._id === user.id || f.toString() === user.id) : false
+);
+
+      const followingRes = await axios.get(`http://localhost:8000/api/auth/${userId}/following`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setFollowingCount(followingRes.data.length);
+
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const res = await axios.get(`http://localhost:8000/api/profile/${userId}`);
-        setProfile(res.data.profile);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    if (!userId) return;
     fetchProfile();
-  }, [userId]);
+  }, [userId, token]);
 
+  
   if (loading) return <p>Loading...</p>;
-  if (!profile) return <p>User not found</p>;
+  // if (!profile) return <p>User not found</p>;
+  if (!profile || !profile.user) {
+  return <p>Loading profile...</p>;
+}
+
+
+  // const followingCount = profile.following?.length || 0;
+
+
+  const handleFollow = async () => {
+    if (!profile?.user?._id) return; // prevent undefined error
+    try {
+      await axios.post(
+        `http://localhost:8000/api/auth/${profile.user._id}/follow`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      // Update local state
+      setIsFollowing(true);
+      setFollowersCount(prev => prev + 1);
+      setProfile(prev => ({
+        ...prev,
+        followers: [...prev.followers, { _id: user.id }],
+      }));
+
+      // await fetchProfile();
+    } catch (err) {
+      console.log(err.response?.data?.message);
+    }
+  };
+
+  const handleUnfollow = async () => {
+  if (!profile?.user?._id) return; // prevent undefined error
+    try {
+      await axios.post(
+        `http://localhost:8000/api/auth/${profile.user._id}/unfollow`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+     setIsFollowing(false);
+      setFollowersCount(prev => prev - 1);
+      setProfile(prev => ({
+        ...prev,
+        followers: prev.followers.filter(f => f._id !== user.id && f.toString() !== user.id),
+      }));
+
+      // await fetchProfile();
+    } catch (err) {
+      console.log(err.response?.data?.message);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-400 to-purple-200 flex justify-center items-start pt-10 px-4">
@@ -48,7 +133,28 @@ export default function UserProfile() {
           {profile.bio}
         </p>
       )}
+
     </div>
+      {/* Followers / Following */}
+          <div className="mt-4 flex gap-6 text-gray-700 font-medium">
+            <span>Followers: {followersCount}</span>
+            <span>Following: {followingCount}</span>
+          </div>
+
+          {/* Follow / Unfollow Button */}
+          {user && (user._id || user.id) !== profile?.user?._id && (
+            <button
+              onClick={isFollowing ? handleUnfollow : handleFollow}
+              className={`mt-4 px-6 py-2 rounded-full text-white font-semibold ${
+                isFollowing ? "bg-gray-500 hover:bg-gray-600" : "bg-blue-500 hover:bg-blue-600"
+              }`}
+            >
+              {isFollowing ? "Unfollow" : "Follow"}
+            </button>
+          )}
+
+     
+
 
     {/* Skills */}
     {profile.skills && profile.skills.length > 0 && (

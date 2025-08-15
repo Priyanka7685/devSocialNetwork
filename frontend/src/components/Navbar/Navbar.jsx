@@ -100,6 +100,14 @@ export default function Navbar() {
               Create Post
             </button>
 
+
+            <button
+              onClick={() => navigate("/discover")}
+              className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
+            >
+              Discover
+            </button>
+
             <button
               onClick={handleLogout}
               className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"

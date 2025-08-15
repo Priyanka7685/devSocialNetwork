@@ -7,8 +7,8 @@ export default function MyProfile() {
   const { user } = useAuth();
   const { userId } = useParams();
 
-  const [profile, setProfile] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [ profile, setProfile ] = useState(null);
+  const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
     if (!userId) return;
@@ -17,6 +17,7 @@ export default function MyProfile() {
       try {
         const res = await axios.get(`http://localhost:8000/api/profile/${userId}`);
         setProfile(res.data.profile);
+
       } catch (error) {
         console.log(error);
       } finally {

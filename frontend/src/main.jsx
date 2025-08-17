@@ -15,6 +15,7 @@ import CreatePosts from './components/CreatePosts/CreatePosts.jsx'
 import MyPosts from './components/MyPosts/MyPosts.jsx'
 import UserProfile from './components/UserProfile/UserProfile.jsx'
 import Discover from './components/Discover/Discover.jsx'
+import SearchUser from './components/SearchUser/SearchUser.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -51,6 +52,7 @@ const router = createBrowserRouter(
       <Route path='/createPosts' element={<CreatePosts/>}/>
       
       <Route path='/discover' element={<Discover/>}/>
+      <Route path='/searchUser' element={<SearchUser/>}/>
       
 
       </Route>

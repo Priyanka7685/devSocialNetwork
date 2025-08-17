@@ -37,25 +37,25 @@ export default function Discover() {
     },[ user, token ]);
 
     return (
-        <div className="min-h-screen bg-gradient-to-r from-blue-400 to-purple-200 px-4 py-10 flex justify-center font-sans">
-        <div className="bg-white shadow-lg rounded-xl max-w-2xl w-full p-8 ">
-      <h1 className="text-3xl font-bold mb-6 text-center text-blue-600">My followers and followings</h1>
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-black px-4">
+        <div className="bg-gradient-to-r from-gray-300 via-purple-300 to-blue-300 shadow-lg rounded-xl max-w-xl w-full p-8 ">
+      <h1 className="text-2xl font-bold mb-6 text-pink-600 text-center ">My followers and followings</h1>
  
       {/* Counts */}
       <div className="grid grid-cols-2 gap-4 mb-8 text-center">
         <div className="bg-blue-100 p-4 rounded-lg shadow hover:shadow-lg transition">
-          <h2 className="text-lg font-semibold">Followers</h2>
+          <h2 className="text-lg font-semibold text-pink-600">Followers</h2>
           <p className="text-2xl font-bold">{followers.length}</p>
         </div>
         <div className="bg-green-100 p-4 rounded-lg shadow hover:shadow-lg transition">
-          <h2 className="text-lg font-semibold">Following</h2>
-          <p className="text-2xl font-bold">{following.length}</p>
+          <h2 className="text-lg font-semibold text-pink-600">Following</h2>
+          <p className="text-2xl font-bold ">{following.length}</p>
         </div>
       </div>
 
       {/* Followers List */}
       <div className="mb-8">
-        <h2 className="text-xl font-bold mb-4">Followers</h2>
+        <h2 className="text-xl font-bold mb-4 text-pink-600">Followers</h2>
         {followers.length > 0 ? (
           <div className="space-y-3">
             {followers.map((f) => (
@@ -70,7 +70,7 @@ export default function Discover() {
                   <p className="font-semibold">{f.username}</p>
                   </Link>
                 </div>
-                <span className="text-blue-500 text-sm">Follower</span>
+                <span className="text-blue-500 text-sm text-pink-600">Follower</span>
               </div>
             ))}
           </div>
@@ -81,7 +81,7 @@ export default function Discover() {
 
       {/* Following List */}
       <div>
-        <h2 className="text-xl font-bold mb-4">Following</h2>
+        <h2 className="text-xl font-bold mb-4 text-pink-600">Following</h2>
         {following.length > 0 ? (
           <div className="space-y-3">
             {following.map((f) => (

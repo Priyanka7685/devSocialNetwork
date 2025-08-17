@@ -50,9 +50,9 @@ export default function MyPosts() {
 
 
     return (
-        <div className="min-h-screen bg-gradient-to-r from-blue-400 to-purple-200 p-6 flex justify-center items-center">
-            <div className="bg-white shadow-lg rounded-xl max-w-xl w-full p-8 ">
-            <h1 className="text-2xl font-bold mb-6 text-blue-600 text-center">My Posts</h1>
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-black px-4">
+            <div className="bg-gradient-to-r from-gray-300 via-purple-300 to-blue-300 shadow-lg rounded-xl max-w-xl w-full p-8 ">
+            <h1 className="text-2xl font-bold mb-6 text-pink-600 text-center ">My Posts</h1>
 
             {loading && <p>Loading...</p>}
             {!loading && posts.length == 0 && <p>No posts found</p>}
@@ -61,11 +61,11 @@ export default function MyPosts() {
                 <div key={post._id} className="bg-white shadow rounded-lg p-4 mb-4">
           <p className="text-gray-800">{post.text}</p>
           {post.image && (
-            <div className="flex justify-center mb-2">
+            <div className="flex flex-col items-center text-center">
               <img
                 src={post.image}
                 alt="Post"
-                className="max-h-55 object-cover rounded-lg mb-2"
+                className="w-36 h-36 md:w-44 md:h-44 mt-3 mb-3 border-4 border-pink-400 object-cover shadow-2xl"
               />
             </div>
           )}

@@ -97,13 +97,13 @@ export const CreateProfile = () => {
 
     return (
         // <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black px-4">
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 to-purple-200 px-4 ">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-black px-4">
             {/* <div className="w-full max-w-md bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-700"> */}
             
-            <form className="bg-white p-8 mt-7 mb-7 rounded-xl shadow-md w-full max-w-2xl space-y-6" onSubmit={handleSubmit}>
-            <h2 className="text-3xl font-bold text-center text-blue-600">Create Profile</h2>
+            <form className="w-full max-w-2xl bg-white/10 backdrop-blur-lg border border-white/20 p-10 rounded-2xl shadow-xl space-y-6 mt-4 mb-4" onSubmit={handleSubmit}>
+            <h2 className="text-4xl font-extrabold text-center text-white mb-6">Create Profile</h2>
                  <div>
-            <label className="block text-sm font-medium text-gray-800">
+            <label className="block text-sm font-medium text-gray-200">
               Bio
             </label>
             <textarea
@@ -111,13 +111,13 @@ export const CreateProfile = () => {
               value={formData.bio}
               onChange={handleChange}
               placeholder="Write something about yourself..."
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
               required
             ></textarea>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-800">
+            <label className="block text-sm font-medium text-white">
               Location
             </label>
             <input
@@ -126,13 +126,13 @@ export const CreateProfile = () => {
               value={formData.location}
               onChange={handleChange}
               placeholder="e.g. New York, USA"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-800">
+            <label className="block text-sm font-medium text-white">
               Website
             </label>
             <input
@@ -141,12 +141,12 @@ export const CreateProfile = () => {
               value={formData.website}
               onChange={handleChange}
               placeholder="e.g. yourProfile.com"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-800">
+            <label className="block text-sm font-medium text-white">
               Skills
             </label>
             <input
@@ -155,13 +155,13 @@ export const CreateProfile = () => {
               value={formData.skills}
               onChange={handleChange}
               placeholder="e.g. JavaScript, React, Node.js"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
           </div>
 
           {/* social links */}
           <div>
-            <label className="block text-sm font-medium text-gray-800 ">
+            <label className="block text-sm font-medium text-white ">
               Social Links
             </label>
             <input
@@ -170,7 +170,7 @@ export const CreateProfile = () => {
               value={formData.socialLinks.twitter}
               onChange={handleChange}
               placeholder="twitter"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 mb-1.5"
+              className="w-full px-4 py-3 mb-2 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
             <input
               type="text"
@@ -178,7 +178,7 @@ export const CreateProfile = () => {
               value={formData.socialLinks.linkedin}
               onChange={handleChange}
               placeholder="linkedin"
-              className="w-full px-4 py-3 mb-1.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-3 mb-2 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
             <input
               type="text"
@@ -186,19 +186,19 @@ export const CreateProfile = () => {
               value={formData.socialLinks.github}
               onChange={handleChange}
               placeholder="github"
-              className="w-full px-4 py-3 mb-1.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-3 mb-2 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
           </div>
 
           {/* Profile Picture */}
         <div>
-          <label className="block text-sm font-medium text-gray-800">Profile Picture</label>
+          <label className="block text-sm font-medium text-white">Profile Picture</label>
           <input
             type="file"
             name="profilePicture"
             accept="image/*"
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white file:bg-purple-600 file:text-white file:px-3 file:py-1 file:rounded-lg file:border-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-400"
           />
         </div>
                 
@@ -206,7 +206,7 @@ export const CreateProfile = () => {
                 <button
                     type="submit"
                     disabled={loading}
-                    className="w-full  bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 rounded-lg hover:opacity-90 transition duration-200 font-semibold"
+                    className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-xl font-semibold shadow-lg hover:opacity-90 transition-all duration-200"
           >
                     {loading ? "Creating..." : "Create Profile"}
           </button>

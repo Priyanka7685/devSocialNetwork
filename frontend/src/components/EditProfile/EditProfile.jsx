@@ -90,17 +90,17 @@ export const EditProfile = () => {
     }
   };
     return (
-         <div className="min-h-screen bg-gradient-to-r from-blue-400 to-purple-200 px-4 py-10  flex justify-center">
+         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-black px-4">
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded-lg p-6 max-w-2xl w-full"
+        className="w-full max-w-2xl bg-white/10 backdrop-blur-lg border border-white/20 p-10 rounded-2xl shadow-xl space-y-6 mt-4 mb-4"
       >
-        <h2 className="text-3xl font-bold text-center text-blue-600">
+        <h2 className="text-4xl font-extrabold text-center text-white mb-6">
           Edit Profile
         </h2>
 
 
-        <label className="block  text-gray-800 font-medium" htmlFor="bio">
+        <label className="block text-sm font-medium text-gray-200 t" htmlFor="bio">
           Bio
         </label>
         <textarea
@@ -109,10 +109,10 @@ export const EditProfile = () => {
           value={form.bio}
           onChange={handleChange}
           rows="3"
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-gray-400  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
         ></textarea>
 
-        <label className="block  text-gray-800 font-medium" htmlFor="skills">
+        <label className="block text-sm font-medium text-gray-200" htmlFor="skills">
           Skills (comma separated)
         </label>
         <input
@@ -122,12 +122,12 @@ export const EditProfile = () => {
           value={form.skills}
           onChange={handleChange}
           placeholder="e.g. React, Node.js, Tailwind CSS"
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-gray-400  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
         />
 
-        <h3 className="font-semibold mt-6 mb-3">Social Links</h3>
+        <h3 className="font-semibold mt-6 mb-3 text-white">Social Links</h3>
 
-        <label className="block  text-gray-800 font-medium" htmlFor="github">
+        <label className="block text-sm font-medium text-gray-200" htmlFor="github">
           Website URL
         </label>
         <input
@@ -137,10 +137,10 @@ export const EditProfile = () => {
           value={form.website}
           onChange={handleChange}
           placeholder="https:yourProfile.com"
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-gray-400  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
         />
 
-        <label className="block  text-gray-800 font-medium" htmlFor="github">
+        <label className="block text-sm font-medium text-gray-200" htmlFor="github">
           GitHub URL
         </label>
         <input
@@ -150,10 +150,10 @@ export const EditProfile = () => {
           value={form.github}
           onChange={handleChange}
           placeholder="https://github.com/username"
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-gray-400 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
         />
 
-        <label className="block  text-gray-800 font-medium" htmlFor="linkedin">
+        <label className="block text-sm font-medium text-gray-200" htmlFor="linkedin">
           LinkedIn URL
         </label>
         <input
@@ -163,10 +163,10 @@ export const EditProfile = () => {
           value={form.linkedin}
           onChange={handleChange}
           placeholder="https://linkedin.com/in/username"
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-gray-400 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
         />
 
-        <label className="block  text-gray-800 font-medium" htmlFor="twitter">
+        <label className="block text-sm font-medium text-gray-200" htmlFor="twitter">
           Twitter URL
         </label>
         <input
@@ -176,12 +176,12 @@ export const EditProfile = () => {
           value={form.twitter}
           onChange={handleChange}
           placeholder="https://twitter.com/username"
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-gray-400 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
         />
 
         <button
           type="submit"
-          className="w-full mt-5 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 rounded-lg hover:opacity-90 transition duration-200 font-semibold"
+          className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-xl font-semibold shadow-lg hover:opacity-90 transition-all duration-200"
         >
           Save Changes
         </button>

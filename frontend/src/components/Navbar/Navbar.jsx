@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext/AuthContext";
-import { FaUser } from "react-icons/fa6";
-import { FaSignOutAlt, FaHome } from "react-icons/fa";
+import { FaUser, FaSignOutAlt, FaHome, FaBars, FaTimes } from "react-icons/fa";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [showDiscoverMenu, setShowDiscoverMenu] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
   const dropdownRef = useRef(null);
 
   const handleLogout = () => {
@@ -17,121 +17,123 @@ export default function Navbar() {
     navigate("/login");
   };
 
-  // Close dropdown when clicking outside
+  // Close dropdowns when clicking outside
   useEffect(() => {
     function handleClickOutside(event) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setShowProfileMenu(false);
+        setShowDiscoverMenu(false);
       }
     }
-    if (showProfileMenu) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [showProfileMenu]);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
-    <nav className="bg-purple-50 shadow-md py-4 px-6 flex justify-between items-center relative">
-      <Link to="/" className="text-2xl font-bold text-blue-600">
+    <nav className="bg-gradient-to-r from-gray-800 via-purple-500 to-gray-300 shadow-lg text-white px-6 py-4 flex justify-between items-center relative z-50">
+      {/* Logo */}
+      <Link to="/" className="text-2xl font-extrabold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
         DevNet
       </Link>
 
-      <div className="space-x-4 flex items-center">
+      {/* Desktop Menu */}
+      <div className="hidden md:flex space-x-4 items-center" ref={dropdownRef}>
         {user ? (
           <>
-            <div className="relative" ref={dropdownRef}>
-              <button
-                onClick={() => navigate("/")}
-                className="bg-blue-500 text-white px-4 py-2 mr-4 rounded-full hover:bg-blue-600"
-              >
-                <FaHome/>
-              </button>
+            {/* Home */}
+            <button
+              onClick={() => navigate("/")}
+              className="bg-purple-800 hover:bg-purple-700 px-4 py-2 rounded-full transition flex items-center gap-2"
+            >
+              <FaHome /> Home
+            </button>
+
+            {/* Profile Menu */}
+            <div className="relative">
               <button
                 onClick={() => setShowProfileMenu(!showProfileMenu)}
-                className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
+                className="bg-purple-800 hover:bg-blue-700 px-4 py-2 rounded-full transition flex items-center gap-2"
               >
-                <FaUser/>
+                <FaUser /> Profile
               </button>
               {showProfileMenu && (
-                <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 z-50">
-                  <Link
-                    to="/profile"
-                    className="block px-4 py-2 hover:bg-blue-300"
-                    onClick={() => setShowProfileMenu(false)}
-                  >
+                <div className="absolute right-0 mt-2 w-56 bg-gray-900/90 border border-gray-700 backdrop-blur-lg rounded-lg shadow-xl overflow-hidden">
+                  <Link to="/profile" className="block px-4 py-2 hover:bg-purple-700" onClick={() => setShowProfileMenu(false)}>
                     Create Profile
                   </Link>
-                  <Link
-                    to={`/profile/${user.id}`}
-                    className="block px-4 py-2 hover:bg-blue-300"
-                    onClick={() => setShowProfileMenu(false)}
-                  >
+
+                  <Link to={`/profile/${user.id}`} className="block px-4 py-2 hover:bg-purple-700" onClick={() => setShowProfileMenu(false)}>
                     My Profile
                   </Link>
-                  <Link
-                    to={`editProfile/${user.id}`}
-                    className="block px-4 py-2 hover:bg-blue-300"
-                    onClick={() => setShowProfileMenu(false)}
-                  >
+
+                  <Link to={`editProfile/${user.id}`} className="block px-4 py-2 hover:bg-purple-700" onClick={() => setShowProfileMenu(false)}>
                     Edit Profile
                   </Link>
-                  <Link
-                    to={`myPosts/${user.id}`}
-                    className="block px-4 py-2 hover:bg-blue-300"
-                    onClick={() => setShowProfileMenu(false)}
-                  >
+
+                  <Link to={`myPosts/${user.id}`} className="block px-4 py-2 hover:bg-purple-700" onClick={() => setShowProfileMenu(false)}>
                     My Posts
                   </Link>
                 </div>
               )}
             </div>
 
+            {/* Discover Menu */}
+            <div className="relative">
+              <button
+                onClick={() => setShowDiscoverMenu(!showDiscoverMenu)}
+                className="bg-purple-800 hover:bg-indigo-700 px-4 py-2 rounded-full transition"
+              >
+                Discover
+              </button>
+
+              {showDiscoverMenu && (
+                <div className="absolute right-0 mt-2 w-56 bg-gray-900/90 border border-gray-700 backdrop-blur-lg rounded-lg shadow-xl overflow-hidden">
+                  <Link to="/discover" className="block px-4 py-2 hover:bg-purple-700" onClick={() => setShowDiscoverMenu(false)}>
+                    My Followers & Followings
+                  </Link>
+                  <Link to="/searchUser" className="block px-4 py-2 hover:bg-purple-700" onClick={() => setShowDiscoverMenu(false)}>
+                    Search Users
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Create Post */}
             <button
               onClick={() => navigate("/createPosts")}
-              className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
+              className="bg-purple-800 hover:bg-green-700 px-4 py-2 rounded-full transition"
             >
               Create Post
             </button>
 
-
-            <button
-              onClick={() => navigate("/discover")}
-              className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
-            >
-              Discover
-            </button>
-
+            {/* Logout */}
             <button
               onClick={handleLogout}
-              className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
+              className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-full transition flex items-center gap-2"
             >
-              <FaSignOutAlt/>
+              <FaSignOutAlt /> Logout
             </button>
           </>
         ) : (
           <>
-            <Link
-              to="/login"
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-            >
+            <Link to="/login" className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition">
               Login
             </Link>
-            <Link
-              to="/register"
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-            >
+            <Link to="/register" className="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg transition">
               Register
             </Link>
           </>
         )}
       </div>
+
+      {/* Mobile Hamburger */}
+      <div className="md:hidden">
+        <button onClick={() => setMobileMenu(!mobileMenu)}>
+          {mobileMenu ? <FaTimes size={24} /> : <FaBars size={24} />}
+        </button>
+      </div>
+
+      
     </nav>
   );
 }

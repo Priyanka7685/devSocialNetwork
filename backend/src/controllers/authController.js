@@ -15,17 +15,10 @@ const registerUser = async(req, res) => {
         })
     }
 
-    const userExists = await User.findOne({
-        $or:[
-            { username },
-            { email }
-        ]
-    })
 
-    if(userExists) {
-        return res.status(400).json({
-            message: "User already exists"
-        })
+     const existingEmail = await User.findOne({ email });
+        if (existingEmail) {
+            return res.status(400).json({ message: "Email already registered" });
     }
 
     const newUser = await User.create({
@@ -228,11 +221,13 @@ const getFollowing = async (req, res) => {
     }
 }
 
+
+
 export {
     registerUser,
     loginUser,
     followUser,
     unfollowUser,
     getFollowers,
-    getFollowing
+    getFollowing,
 }

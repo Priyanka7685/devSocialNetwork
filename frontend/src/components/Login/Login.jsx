@@ -33,10 +33,10 @@ const handleLogin = async (e) => {
 }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 to-purple-200 px-4">
-            <form className="bg-white p-8 rounded-xl shadow-md w-full max-w-md space-y-6" onSubmit={handleLogin}>
-                <h2 className="text-3xl font-bold text-center text-blue-600">
-                    Login to <span className="text-purple-600">DevNet</span>
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-black px-4">
+            <form className="w-full max-w-2xl bg-white/10 backdrop-blur-lg border border-white/20 p-10 rounded-2xl shadow-xl space-y-6 mt-4 mb-4" onSubmit={handleLogin}>
+                <h2 className="text-4xl font-extrabold text-center text-white mb-6">
+                    Login to <span className="text-pink-600">DevNet</span>
                 </h2>
 
                 <input 
@@ -45,7 +45,7 @@ const handleLogin = async (e) => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="text-white w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400"
                  />
 
                 <input 
@@ -54,7 +54,7 @@ const handleLogin = async (e) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400 text-white"
                  />
 
                 <input 
@@ -63,19 +63,19 @@ const handleLogin = async (e) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400 text-white"
                  />
 
                  <button 
                  type="submit"
 
-                 className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 rounded-lg hover:opacity-90 transition duration-200 font-semibold"
+                 className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-xl font-semibold shadow-lg hover:opacity-90 transition-all duration-200"
                  >Login</button>
 
-                 <p className="text-center text-sm text-gray-600">
+                 <p className="text-center text-lg text-white ">
                      Don't have an account? <a 
                      href="/register"
-                      className="text-blue-500 hover:underline font-medium"
+                      className="text-pink-400 hover:underline font-bold text-lg"
                       >
                      Register
                      </a>

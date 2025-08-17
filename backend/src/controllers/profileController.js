@@ -1,5 +1,6 @@
 import { Profile } from "../models/profileModel.js";
 import { uploadOnCloudinary, deleteFromCloudinary } from "../utils/cloudinary.js";
+import { User } from "../models/userModel.js";
 
 
 const createProfile = async(req, res) => {
@@ -117,12 +118,61 @@ const createProfile = async(req, res) => {
         }
     }
 
+    
+
+// fetch all users with profiles (for Discover)
+ const fetchUsers = async (req, res) => {
+  try {
+    const loggedInUserId = req.user._id;
+
+     // pagination params
+    const page = parseInt(req.query.page) || 1; // default page = 1
+    const limit = parseInt(req.query.limit) || 10; // default limit = 10
+    const skip = (page - 1) * limit;
+
+    // total profiles count (excluding logged in user)
+    const totalProfiles = await Profile.countDocuments({ user: { $ne: loggedInUserId } });
+
+    // find all profiles except logged in user
+    const profiles = await Profile.find({ user: { $ne: loggedInUserId } })
+      .populate("user", ["username", "email"]) // populate basic user info
+      .select("skills user")
+       .skip(skip)
+      .limit(limit);
+      
+
+    // get logged-in user's following list
+    const loggedInUser = await User.findById(loggedInUserId).select("following");
+
+    // map profiles into a neat JSON response
+    const usersWithFollowStatus = profiles.map((p) => ({
+      _id: p.user._id,
+      username: p.user.username,
+      email: p.user.email,
+      skills: p.skills,
+      isFollowed: loggedInUser.following.includes(p.user._id),
+    }));
+
+     res.status(200).json({
+      users: usersWithFollowStatus,
+      totalProfiles,
+      currentPage: page,
+      totalPages: Math.ceil(totalProfiles / limit),
+    });
+  } catch (error) {
+    console.error("Error in fetchUsers:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
 
 export {
     createProfile,
     getUserProfile,
     getUserProfileById,
-    editProfile
+    editProfile,
+    fetchUsers
 }
 
 

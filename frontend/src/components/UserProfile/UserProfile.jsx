@@ -112,31 +112,31 @@ export default function UserProfile() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-400 to-purple-200 flex justify-center items-start pt-10 px-4">
-  <div className="bg-white shadow-lg rounded-xl max-w-xl w-full p-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-black px-4">
+  <div className="w-full max-w-2xl bg-white/10 backdrop-blur-lg border border-white/20 p-10 rounded-2xl shadow-xl space-y-6 mt-4 mb-4">
     
     {/* Avatar */}
     <div className="flex flex-col items-center text-center">
       <img
         src={profile.profilePicture || "/default-avatar.png"}
         alt={profile.user.username}
-        className="w-36 h-36 rounded-full border-4 border-indigo-500 object-cover shadow-md"
+        className="w-36 h-36 md:w-44 md:h-44 rounded-full border-4 border-pink-400 object-cover shadow-2xl"
       />
       
-      <h2 className="mt-5 text-3xl font-extrabold text-gray-900 tracking-tight">
-        {profile.user.username}
+      <h2 className="mt-5 text-2xl md:text-3xl font-semibold tracking-wide font-poppins text-pink-300">
+        {profile.user.username.charAt(0).toUpperCase() + user.username.slice(1)}
       </h2>
-      <p className="text-gray-600 mt-1">{profile.user.email}</p>
+      <p className="mt-2 text-md md:text-lg text-gray-300 tracking-wides">{profile.user.email}</p>
       
       {profile.bio && (
-        <p className="text-gray-700 mt-3 max-w-md text-center text-base leading-relaxed font-light">
+        <p  className="text-gray-300 mt-4 max-w-md text-base md:text-lg leading-relaxed font-light px-4">
           {profile.bio}
         </p>
       )}
 
     </div>
       {/* Followers / Following */}
-          <div className="mt-4 flex gap-6 text-gray-700 font-medium">
+          <div className="mt-4 flex gap-6 text-white font-medium">
             <span>Followers: {followersCount}</span>
             <span>Following: {followingCount}</span>
           </div>
@@ -159,12 +159,12 @@ export default function UserProfile() {
     {/* Skills */}
     {profile.skills && profile.skills.length > 0 && (
       <div className="mt-8 border-t pt-6 text-center">
-        <h3 className="text-xl font-semibold text-gray-800 mb-4">Skills & Languages</h3>
+        <h3 className="text-xl md:text-2xl font-semibold mb-4 tracking-tight text-white">Skills & Languages</h3>
         <ul className="flex flex-wrap gap-2 justify-center">
           {profile.skills.map((skill, index) => (
             <li
               key={index}
-              className="bg-indigo-100 text-indigo-700 px-4 py-1 rounded-full text-sm font-medium"
+              className="bg-pink-900 text-pink-200 px-4 py-1 rounded-full text-sm md:text-base font-medium tracking-wide"
             >
               {skill}
             </li>
@@ -176,7 +176,7 @@ export default function UserProfile() {
     {/* Website */}
     {profile.website && (
       <div className="mt-8 border-t pt-6 text-center">
-        <h3 className="text-xl font-semibold text-gray-800 mb-3">Website</h3>
+        <h3 className="text-xl font-semibold text-white mb-3">Website</h3>
         <a
           href={profile.website}
           target="_blank"
@@ -191,7 +191,7 @@ export default function UserProfile() {
     {/* Social Links */}
     {profile.socialLinks && (
       <div className="mt-8 border-t pt-6 text-center">
-        <h3 className="text-xl font-semibold text-gray-800 mb-4">Social Links</h3>
+        <h3 className="text-xl font-semibold text-white mb-4">Social Links</h3>
         <div className="flex justify-center gap-3 flex-wrap">
           {profile.socialLinks.github && (
             <a

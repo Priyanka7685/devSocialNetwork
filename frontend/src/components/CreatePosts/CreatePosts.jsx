@@ -43,15 +43,15 @@ export default function CreatePosts() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-r from-blue-400 to-purple-200 px-4 py-10 flex justify-center font-sans">
-        <div className="bg-white shadow-lg rounded-xl max-w-2xl w-full p-8 h-100">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-black px-4">
+        <div className="bg-gradient-to-r from-gray-300 via-purple-300 to-blue-300 shadow-lg rounded-xl max-w-xl w-full p-8 ">
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 
                 <textarea 
                 placeholder="What's on your mind?"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none resize-none"
+                className="w-full p-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-pink-400 focus:outline-none resize-none"
                 rows="3"
                 />
 
@@ -59,9 +59,9 @@ export default function CreatePosts() {
                 type="file"
                 accept="image/*"
                 onChange={(e) => setImage(e.target.files[0])}
-                className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 
+                className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0  
                 file:text-sm file:font-semibold 
-                file:bg-blue-50 file:text-blue-700 
+                file:bg-pink-400 file:text-white
                 hover:file:bg-blue-100 cursor-pointer"
                 />  
 

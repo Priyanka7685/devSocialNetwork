@@ -76,7 +76,7 @@ export const CreateProfile = () => {
       }
 
             const res = await axios.post(
-                "http://localhost:8000/api/profile",
+                `https://devsocialnetwork-production.up.railway.app/api/profile`,
                 data,
                 {
                     headers: {

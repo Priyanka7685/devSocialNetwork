@@ -16,7 +16,7 @@ export default function UserProfile() {
 
    const fetchProfile = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/profile/${userId}`, {
+      const res = await axios.get(`https://devsocialnetwork-production.up.railway.app/api/profile/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = res.data.profile || res.data;

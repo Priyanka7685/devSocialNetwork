@@ -26,7 +26,7 @@ export const EditProfile = () => {
     useEffect(() => {
     async function fetchProfile() {
       try {
-        const res = await axios.get(`http://localhost:8000/api/profile/${userId}`);
+        const res = await axios.get(`https://devsocialnetwork-production.up.railway.app/api/profile/${userId}`);
         const profile = res.data.profile || res.data;
 
         setOriginalProfile(profile);
@@ -81,7 +81,7 @@ export const EditProfile = () => {
     };
 
     try {
-      await axios.put(`http://localhost:8000/api/profile/editProfile/${userId}`, mergedProfile);
+      await axios.put(`https://devsocialnetwork-production.up.railway.app/api/profile/editProfile/${userId}`, mergedProfile);
       toast.success("Profile updated successfully!");
       navigate(`/profile/${userId}`);
     } catch (error) {

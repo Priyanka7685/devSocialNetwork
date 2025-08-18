@@ -14,13 +14,13 @@ export default function Discover() {
 
     const fetchData = async() => {
         try {
-            const followerRes = await axios.get(`http://localhost:8000/api/auth/${user.id}/followers`, {
+            const followerRes = await axios.get(`https://devsocialnetwork-production.up.railway.app/api/auth/${user.id}/followers`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
             setFollowers(followerRes.data || []);
 
-            const followingRes = await axios.get(`http://localhost:8000/api/auth/${user.id}/following`, {
+            const followingRes = await axios.get(`https://devsocialnetwork-production.up.railway.app/api/auth/${user.id}/following`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 

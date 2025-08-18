@@ -15,7 +15,7 @@ export default function MyPosts() {
         setLoading(true)
 
         try {
-            const res = await axios.get(`http://localhost:8000/api/post/${userId}`)
+            const res = await axios.get(`https://devsocialnetwork-production.up.railway.app/api/post/${userId}`)
             setPosts(res.data.posts)
 
         } catch (error) {
@@ -35,7 +35,7 @@ export default function MyPosts() {
     const token = localStorage.getItem("token"); 
     const handleDelete = async (postId) => {
         try {
-            await axios.delete(`http://localhost:8000/api/post/${postId}/delete`, {
+            await axios.delete(`https://devsocialnetwork-production.up.railway.app/api/post/${postId}/delete`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -51,7 +51,7 @@ export default function MyPosts() {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-black px-4">
-            <div className="bg-gradient-to-r from-gray-300 via-purple-300 to-blue-300 shadow-lg rounded-xl max-w-xl w-full p-8 ">
+            <div className="bg-gradient-to-r from-gray-300 via-purple-300 to-blue-300 shadow-lg rounded-xl max-w-xl w-full p-8 mt-3 mb-3">
             <h1 className="text-2xl font-bold mb-6 text-pink-600 text-center ">My Posts</h1>
 
             {loading && <p>Loading...</p>}

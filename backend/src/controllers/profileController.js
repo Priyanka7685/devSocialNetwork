@@ -17,7 +17,7 @@ const createProfile = async(req, res) => {
 
     try {
 
-         let profilePictureUrl = "";
+         let profilePictureUrl = null;
     if (req.file && req.file.path) {
       const uploadResult = await uploadOnCloudinary(req.file.path);
       if (uploadResult) {

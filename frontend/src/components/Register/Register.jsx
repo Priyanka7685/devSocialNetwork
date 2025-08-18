@@ -14,7 +14,7 @@ export default function Register() {
 
         try {
             const res = await axios.post(
-                "http://localhost:8000/api/auth/register",
+                "https://devsocialnetwork-production.up.railway.app/api/auth/register",
                 { username, fullname, email, password },
                 { withCredentials: true }
             )   
@@ -79,7 +79,11 @@ export default function Register() {
                  <button 
                  type="submit"
                  className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-xl font-semibold shadow-lg hover:opacity-90 transition-all duration-200"
-                 >Register</button>
+                 >
+                    Register
+                    
+                    
+                    </button>
 
                  <p className="text-center text-lg text-white ">
                      Already have an account? <a href="/login" className="text-pink-500 text-lg hover:underline font-medium">

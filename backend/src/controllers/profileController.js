@@ -19,11 +19,14 @@ const createProfile = async(req, res) => {
 
          let profilePictureUrl = null;
     if (req.file && req.file.path) {
-      const uploadResult = await uploadOnCloudinary(req.file.path);
-      if (uploadResult) {
-        profilePictureUrl = uploadResult.secure_url; // Use secure URL from Cloudinary
-      }
+  try {
+    const uploadResult = await uploadOnCloudinary(req.file.path);
+    if (uploadResult && uploadResult.secure_url) {
+      profilePictureUrl = uploadResult.secure_url;
     }
+  } catch (err) {
+    console.error("Cloudinary upload failed:", err);
+  }}
         const profile = await Profile.findOne({ user: req.user._id})
 
 

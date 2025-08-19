@@ -8,7 +8,7 @@ app.use(
     cors({
         origin: [
             "http://localhost:5173",
-            "https://dev-social-network.vercel.app/"
+            "https://dev-social-network.vercel.app"
         ],
         
         credentials: true

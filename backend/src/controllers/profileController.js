@@ -47,7 +47,7 @@ const createProfile = async(req, res) => {
 
         // if no profile exists then create it
         const newProfile = await Profile.create({
-            user: req.user._id,
+            user: req.user.id,
             bio,
             location,
             website,

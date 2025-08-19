@@ -117,11 +117,17 @@ export default function UserProfile() {
     
     {/* Avatar */}
     <div className="flex flex-col items-center text-center">
-      <img
-        src={profile.profilePicture || "/default-avatar.png"}
-        alt={profile.user.username}
-        className="w-36 h-36 md:w-44 md:h-44 rounded-full border-4 border-pink-400 object-cover shadow-2xl"
-      />
+          {profile.profilePicture ? (
+          <img
+            src={profile.profilePicture }
+            alt="My Profile Picture"
+            className="w-36 h-36 md:w-44 md:h-44 rounded-full border-4 border-pink-400 object-cover shadow-2xl"
+          />
+          ) : (
+          <div className="w-36 h-36 md:w-44 md:h-44 rounded-full border-4 border-pink-400 bg-pink-600 flex items-center justify-center shadow-2xl text-5xl md:text-6xl font-bold text-white">
+          {user.username?.charAt(0).toUpperCase()}
+        </div>
+        )}
       
       <h2 className="mt-5 text-2xl md:text-3xl font-semibold tracking-wide font-poppins text-pink-300">
         {profile.user.username}

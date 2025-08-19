@@ -58,6 +58,7 @@ export default function CreatePosts() {
                 <input 
                 type="file"
                 accept="image/*"
+                name="image"
                 onChange={(e) => setImage(e.target.files[0])}
                 className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0  
                 file:text-sm file:font-semibold 

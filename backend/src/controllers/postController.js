@@ -10,15 +10,13 @@ const createPost = async(req, res) => {
         let imageUrl = ""
 
         if(req.file) {
-            const uploadeResult = await uploadOnCloudinary(req.file.buffer)
-
-            if(!uploadeResult) {
-                return res.status(400).json({
-                    message: "Error uploading image"
-                })
-            }
-
-            imageUrl = uploadeResult.secure_url
+            try {
+        const uploadResult = await uploadOnCloudinary(req.file.buffer);
+        imageUrl = uploadResult.secure_url;
+    } catch (err) {
+        console.error("Cloudinary upload failed:", err);
+        return res.status(500).json({ message: "Image upload failed" });
+    }
 
         }
 

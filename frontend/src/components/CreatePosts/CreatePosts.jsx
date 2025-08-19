@@ -13,8 +13,13 @@ export default function CreatePosts() {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        if (!text || !image) {
+        toast.error("You have to enter both field for creating post.");
+        return;
+    }
+
         const formData = new FormData()
-        formData.append("text", text)
+        if (text) formData.append("text", text)
         if(image) formData.append("image", image)
 
 
@@ -57,8 +62,8 @@ export default function CreatePosts() {
 
                 <input 
                 type="file"
-                accept="image/*"
                 name="image"
+                accept="image/*"
                 onChange={(e) => setImage(e.target.files[0])}
                 className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0  
                 file:text-sm file:font-semibold 

@@ -128,6 +128,8 @@ const createProfile = async(req, res) => {
 // fetch all users with profiles (for Discover)
  const fetchUsers = async (req, res) => {
   try {
+    if (!req.user) return res.status(401).json({ message: "Unauthorized" });
+
     const loggedInUserId = req.user._id;
 
      // pagination params
@@ -150,12 +152,16 @@ const createProfile = async(req, res) => {
     const loggedInUser = await User.findById(loggedInUserId).select("following");
 
     // map profiles into a neat JSON response
-    const usersWithFollowStatus = profiles.map((p) => ({
+    const usersWithFollowStatus = profiles
+    .filter(p => p.user)
+    .map((p) => ({
       _id: p.user._id,
       username: p.user.username,
       email: p.user.email,
       skills: p.skills,
-      isFollowed: loggedInUser.following.includes(p.user._id),
+      isFollowed: Array.isArray(loggedInUser.following)
+          ? loggedInUser.following.map(id => id.toString()).includes(p.user._id.toString())
+          : false,
     }));
 
      res.status(200).json({
@@ -166,6 +172,8 @@ const createProfile = async(req, res) => {
     });
   } catch (error) {
     console.error("Error in fetchUsers:", error);
+    console.log(error);
+    
     res.status(500).json({ message: "Internal server error" });
   }
 };

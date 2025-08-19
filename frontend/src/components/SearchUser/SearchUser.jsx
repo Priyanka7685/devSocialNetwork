@@ -1,11 +1,9 @@
 import axios from "axios"
-import { useAuth } from "../AuthContext/AuthContext"
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function SearchUser() {
 
-    const { user } = useAuth()
     const token = localStorage.getItem("token")
 
 

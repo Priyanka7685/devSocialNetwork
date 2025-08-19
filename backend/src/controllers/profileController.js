@@ -1,5 +1,5 @@
 import { Profile } from "../models/profileModel.js";
-import { uploadOnCloudinary, deleteFromCloudinary } from "../utils/cloudinary.js";
+import { uploadOnCloudinary} from "../utils/cloudinary.js";
 import { User } from "../models/userModel.js";
 
 
@@ -18,15 +18,17 @@ const createProfile = async(req, res) => {
     try {
 
          let profilePictureUrl = null;
-    if (req.file && req.file.path) {
-  try {
-    const uploadResult = await uploadOnCloudinary(req.file.path);
-    if (uploadResult && uploadResult.secure_url) {
-      profilePictureUrl = uploadResult.secure_url;
+
+     if (req.file) {
+      try {
+        const uploadResult = await uploadOnCloudinary(req.file.buffer);
+        if (uploadResult?.secure_url) {
+          profilePictureUrl = uploadResult.secure_url;
+        }
+      } catch (err) {
+        console.error("Cloudinary upload failed:", err);
+      }
     }
-  } catch (err) {
-    console.error("Cloudinary upload failed:", err);
-  }}
         const profile = await Profile.findOne({ user: req.user._id})
 
 

@@ -10,7 +10,7 @@ const createPost = async(req, res) => {
         let imageUrl = ""
 
         if(req.file) {
-            const uploadeResult = await uploadOnCloudinary(req.file.path)
+            const uploadeResult = await uploadOnCloudinary(req.file.buffer)
 
             if(!uploadeResult) {
                 return res.status(400).json({

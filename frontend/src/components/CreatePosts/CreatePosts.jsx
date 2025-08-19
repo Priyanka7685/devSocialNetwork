@@ -62,7 +62,7 @@ export default function CreatePosts() {
                 className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0  
                 file:text-sm file:font-semibold 
                 file:bg-pink-400 file:text-white
-                hover:file:bg-blue-100 cursor-pointer"
+                hover:file:bg-blue-400 cursor-pointer"
                 />  
 
                 <button 

@@ -202,7 +202,7 @@ export default function Posts() {
         className="flex justify-between items-center bg-gray-100 p-2 rounded-lg mt-2 border border-gray-300"
       >
         <p className="text-sm text-black ">
-          <strong className="text-purple-700">{c.user.username}</strong>: {c.text}
+          <strong className="text-purple-700">{c.user?.username}</strong>: {c.text}
         </p>
          {/* {c.user?._id === user?._id && ( */}
          {( c.user?._id === user?.id) && (

@@ -125,7 +125,7 @@ export default function UserProfile() {
           />
           ) : (
           <div className="w-36 h-36 md:w-44 md:h-44 rounded-full border-4 border-pink-400 bg-pink-600 flex items-center justify-center shadow-2xl text-5xl md:text-6xl font-bold text-white">
-          {user.username?.charAt(0).toUpperCase()}
+          {profile.user.username?.charAt(0).toUpperCase()}
         </div>
         )}
       

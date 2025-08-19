@@ -13,7 +13,7 @@ export default function SearchUser() {
     const [pagination, setPagination] = useState({
     currentPage: 1,
     totalPages: 1,
-    pageSize: 5, // 👈 define limit here
+    pageSize: 5, 
   });
 
 

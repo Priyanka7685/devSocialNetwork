@@ -152,9 +152,7 @@ const createProfile = async(req, res) => {
     const loggedInUser = await User.findById(loggedInUserId).select("following");
 
     // map profiles into a neat JSON response
-    const usersWithFollowStatus = profiles
-    .filter(p => p.user)
-    .map((p) => ({
+    const usersWithFollowStatus = profiles.map((p) => ({
       _id: p.user._id,
       username: p.user.username,
       email: p.user.email,

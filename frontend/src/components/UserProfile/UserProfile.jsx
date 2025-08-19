@@ -124,7 +124,7 @@ export default function UserProfile() {
       />
       
       <h2 className="mt-5 text-2xl md:text-3xl font-semibold tracking-wide font-poppins text-pink-300">
-        {profile.user.username.charAt(0).toUpperCase() + user.username.slice(1)}
+        {profile.user.username}
       </h2>
       <p className="mt-2 text-md md:text-lg text-gray-300 tracking-wides">{profile.user.email}</p>
       

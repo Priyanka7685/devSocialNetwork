@@ -30,7 +30,7 @@ export default function UserProfile() {
       //  setIsFollowing(user ? followers.some(f => f._id === user.id || f.toString() === user.id) : false);
 
        // Check follow state
-      const followersRes = await axios.get(`http://localhost:8000/api/auth/${userId}/followers`, {
+      const followersRes = await axios.get(`https://devsocialnetwork-production.up.railway.app/api/auth/${userId}/followers`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setFollowersCount(followersRes.data.length);
@@ -40,7 +40,7 @@ export default function UserProfile() {
   user ? followersRes.data.some(f => f._id === user.id || f.toString() === user.id) : false
 );
 
-      const followingRes = await axios.get(`http://localhost:8000/api/auth/${userId}/following`, {
+      const followingRes = await axios.get(`https://devsocialnetwork-production.up.railway.app/auth/${userId}/following`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setFollowingCount(followingRes.data.length);
@@ -72,7 +72,7 @@ export default function UserProfile() {
     if (!profile?.user?._id) return; // prevent undefined error
     try {
       await axios.post(
-        `http://localhost:8000/api/auth/${profile.user._id}/follow`,
+        `https://devsocialnetwork-production.up.railway.app/api/auth/${profile.user._id}/follow`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -94,7 +94,7 @@ export default function UserProfile() {
   if (!profile?.user?._id) return; // prevent undefined error
     try {
       await axios.post(
-        `http://localhost:8000/api/auth/${profile.user._id}/unfollow`,
+        `https://devsocialnetwork-production.up.railway.app/api/auth/${profile.user._id}/unfollow`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

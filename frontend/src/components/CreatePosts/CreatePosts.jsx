@@ -27,7 +27,7 @@ export default function CreatePosts() {
             setLoading(true)
 
             const token = localStorage.getItem("token")
-            const res = await axios.post(`https://devsocialnetwork-production.up.railway.app/api/post/create`,formData, {
+            const res = await axios.post(`http://localhost:8000/api/post/create`,formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "multipart/form-data"

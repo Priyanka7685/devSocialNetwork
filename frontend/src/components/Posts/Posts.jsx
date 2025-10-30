@@ -20,7 +20,7 @@ export default function Posts() {
   const fetchPosts = async (page = 1) => {
       setLoading(true)
       try {
-          const res = await axios.get(`https://devsocialnetwork-production.up.railway.app/api/post?page=${page}&limit=${pagination.pageSize}`);
+          const res = await axios.get(`http://localhost:8000/api/post?page=${page}&limit=${pagination.pageSize}`);
           setPosts(res.data.posts);
           setPagination(res.data.pagination);
         } catch (error) {
@@ -39,7 +39,7 @@ export default function Posts() {
     // toggle like
     const toggleLike = async (postId) => {
       try {
-        const res = await axios.put(`https://devsocialnetwork-production.up.railway.app/api/post/${postId}/like`, {}, {
+        const res = await axios.put(`http://localhost:8000/api/post/${postId}/like`, {}, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -63,7 +63,7 @@ export default function Posts() {
     // add comments
     const addComments = async (postId) => {
   try {
-    const res = await axios.put(`https://devsocialnetwork-production.up.railway.app/api/post/${postId}/comment`, {
+    const res = await axios.put(`http://localhost:8000/api/post/${postId}/comment`, {
       text: commentText[postId]
     }, {
       headers: { Authorization: `Bearer ${token}` }
@@ -94,7 +94,7 @@ export default function Posts() {
     // delete comment
     const deleteComments = async (postId, commentId) => {
       try {
-        const res = await axios.delete(`https://devsocialnetwork-production.up.railway.app/api/post/${postId}/comments/${commentId}`, {
+        const res = await axios.delete(`http://localhost:8000/api/post/${postId}/comments/${commentId}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
 

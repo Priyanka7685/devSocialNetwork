@@ -15,7 +15,7 @@ export default function MyPosts() {
         setLoading(true)
 
         try {
-            const res = await axios.get(`https://devsocialnetwork-production.up.railway.app/api/post/${userId}`)
+            const res = await axios.get(`http://localhost:8000/api/post/${userId}`)
             setPosts(res.data.posts)
 
         } catch (error) {
@@ -35,7 +35,7 @@ export default function MyPosts() {
     const token = localStorage.getItem("token"); 
     const handleDelete = async (postId) => {
         try {
-            await axios.delete(`https://devsocialnetwork-production.up.railway.app/api/post/${postId}/delete`, {
+            await axios.delete(`http://localhost:8000/api/post/${postId}/delete`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

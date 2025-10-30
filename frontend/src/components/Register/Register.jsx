@@ -14,7 +14,7 @@ export default function Register() {
 
         try {
             const res = await axios.post(
-                "https://devsocialnetwork-production.up.railway.app/api/auth/register",
+                "http://localhost:8000/api/auth/register",
                 { username, fullname, email, password },
                 { withCredentials: true }
             )   

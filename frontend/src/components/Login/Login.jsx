@@ -17,7 +17,7 @@ const handleLogin = async (e) => {
 
     try {
         const res = await axios.post(
-            `https://devsocialnetwork-production.up.railway.app/api/auth/login`,
+            `http://localhost:8000/api/auth/login`,
             { username, email, password },
             { withCredentials: true }
         )

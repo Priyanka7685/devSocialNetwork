@@ -94,7 +94,7 @@ export default function UserProfile() {
   if (!profile?.user?._id) return; // prevent undefined error
     try {
       await axios.post(
-        `https://devsocialnetwork-production.up.railway.app/api/auth/${profile.user._id}/unfollow`,
+        `http://localhost:8000/api/auth/${profile.user._id}/unfollow`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

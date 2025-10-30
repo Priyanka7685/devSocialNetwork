@@ -19,7 +19,7 @@ export default function SearchUser() {
 
     const fetchUser = async(page = pagination.currentPage) => {
         try {
-            const res = await axios.get(`https://devsocialnetwork-production.up.railway.app/api/profile?page=${page}&limit=${pagination.pageSize}`, {
+            const res = await axios.get(`http://localhost:8000/api/profile?page=${page}&limit=${pagination.pageSize}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setUsers(res.data.users);
